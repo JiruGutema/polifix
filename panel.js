@@ -376,15 +376,19 @@ class PolifixPanel extends St.Widget {
         this._setStatus(`${transformation.name}…`);
 
         const provider = this._settings.get_string('provider');
-        const apiKey = await lookupKey(provider);
+        const {key: apiKey, source} = await lookupKey(provider);
 
         // The user may have closed the panel while the keyring answered.
         if (!this.isOpen)
             return;
 
         if (!apiKey) {
+            const label = PROVIDERS[provider]?.label ?? provider;
             this._setRunning(false);
-            this._setStatus(`No ${PROVIDERS[provider]?.label ?? provider} API key saved — open settings to add one.`);
+            this._setStatus(source === 'unavailable'
+                ? 'The keyring did not answer — no secret service on this ' +
+                  'session bus. Set POLIFIX_API_KEY instead.'
+                : `No ${label} API key saved — open settings to add one.`);
             return;
         }
 

@@ -30,16 +30,16 @@ const SAMPLE = 'teh quick brown fox jumpd over teh lazy dog, and then it dont mo
 
 const loop = new GLib.MainLoop(null, false);
 
-lookupKey(provider).then(apiKey => {
+lookupKey(provider).then(({key: apiKey, source}) => {
     if (!apiKey) {
-        print(`No key found for ${provider} — not in the keyring, not in the environment.`);
+        print(`No key for ${provider} (${source}) — not in the keyring, not in the environment.`);
         loop.quit();
         return;
     }
 
     print(`provider     ${PROVIDERS[provider].label}`);
     print(`model        ${model}`);
-    print(`key          found (${apiKey.length} chars)`);
+    print(`key          ${apiKey.length} chars, from the ${source}`);
     print(`transform    ${transformation.name}`);
     print(`input        ${SAMPLE}`);
     print('');

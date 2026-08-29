@@ -25,6 +25,12 @@ log out and back in — or try it without leaving your session:
 make nested    # a second GNOME Shell in a window
 ```
 
+The nested shell gets its own D-Bus session, and there is no secret service on
+it — so the keyring is unreachable from inside it, and the preferences window
+cannot save a key there. `make nested` works around that by reading the key
+for your current provider out of the real keyring and handing it to the nested
+session as `POLIFIX_API_KEY`. Set the key in your real session first.
+
 ## Set an API key
 
 Open the settings (the gear in the panel, or `gnome-extensions prefs

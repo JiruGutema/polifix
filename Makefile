@@ -48,6 +48,5 @@ logs:
 	journalctl -f -o cat /usr/bin/gnome-shell
 
 ## Try it without logging out: a second shell in a window.
-nested:
-	dbus-run-session -- env MUTTER_DEBUG_DUMMY_MODE_SPECS=1400x900 \
-	  gnome-shell --nested --wayland
+nested: all
+	./tools/nested.sh

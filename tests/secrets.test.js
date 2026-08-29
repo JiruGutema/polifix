@@ -11,12 +11,13 @@ const check = (n, a, e) => { const ok = a === e; if (!ok) failures++; print(`${o
 
 storeKey(PROVIDER, SECRET)
     .then(() => lookupKey(PROVIDER))
-    .then(key => {
+    .then(({key, source}) => {
         check('keyring round trip', key, SECRET);
+        check('reported source', source, 'keyring');
         return storeKey(PROVIDER, '');
     })
     .then(() => lookupKey(PROVIDER))
-    .then(key => {
+    .then(({key}) => {
         check('cleared key is gone', key === null || key !== SECRET, true);
         loop.quit();
     })

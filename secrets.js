@@ -78,33 +78,53 @@ export function storeKey(provider, key) {
  */
 const KEYRING_TIMEOUT_SECONDS = 5;
 
+/**
+ * Resolves to `{key, source}`. `source` is why you got what you got:
+ *
+ *   'keyring'     — found in the login keyring
+ *   'environment' — the keyring had nothing, a POLIFIX_* variable did
+ *   'none'        — the keyring answered, and nothing is stored
+ *   'unavailable' — the keyring never answered
+ *
+ * The last two are worth telling apart. "No key saved" and "the secret
+ * service is not on this bus" look identical to the caller otherwise, and
+ * they need opposite fixes.
+ */
 export function lookupKey(provider) {
     return new Promise(resolve => {
         let settled = false;
-        const settle = key => {
+        const settle = (key, source) => {
             if (settled)
                 return;
             settled = true;
-            resolve(key || fromEnvironment(provider));
+
+            if (key) {
+                resolve({key, source});
+                return;
+            }
+            const fallback = fromEnvironment(provider);
+            resolve(fallback
+                ? {key: fallback, source: 'environment'}
+                : {key: null, source});
         };
 
         const timer = GLib.timeout_add_seconds(
             GLib.PRIORITY_DEFAULT, KEYRING_TIMEOUT_SECONDS, () => {
-                settle(null);
+                settle(null, 'unavailable');
                 return GLib.SOURCE_REMOVE;
             });
 
         Secret.password_lookup(SCHEMA, {provider}, null, (_o, res) => {
             let key = null;
+            let source = 'none';
             try {
                 key = Secret.password_lookup_finish(res);
             } catch {
-                // A locked or absent keyring is not an error here — it just
-                // means we fall through to the environment.
+                source = 'unavailable';
             }
             if (!settled)
                 GLib.Source.remove(timer);
-            settle(key);
+            settle(key, key ? 'keyring' : source);
         });
     });
 }

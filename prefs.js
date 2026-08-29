@@ -29,10 +29,12 @@ function apiKeyRow(provider) {
     });
     row.add_suffix(status);
 
-    lookupKey(provider).then(key => {
+    lookupKey(provider).then(({key, source}) => {
         if (key) {
             row.text = key;
-            status.label = 'Saved';
+            status.label = source === 'environment' ? 'From the environment' : 'Saved';
+        } else if (source === 'unavailable') {
+            status.label = 'Keyring unavailable';
         } else {
             status.label = `Get one at ${PROVIDERS[provider].keyHost}`;
         }
