@@ -1,4 +1,5 @@
 # Polifix
+<img width="898" height="436" alt="image" src="https://github.com/user-attachments/assets/cb096018-0f77-4968-b007-c8fb19d59e73" />
 
 Polish any text from anywhere, with one keystroke.
 
