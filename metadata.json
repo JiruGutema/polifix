@@ -1,0 +1,9 @@
+{
+  "uuid": "polifix@jirugutema.github.io",
+  "name": "Polifix",
+  "description": "Polish any text from anywhere. Press a shortcut, pick a transformation, and the result streams in and lands on your clipboard. Talks to your own AI provider with your own API key — Anthropic, Gemini, or anything that speaks the OpenAI contract.",
+  "version": 1,
+  "shell-version": ["45", "46", "47", "48", "49"],
+  "settings-schema": "org.gnome.shell.extensions.polifix",
+  "url": "https://github.com/JiruGutema/polifix"
+}

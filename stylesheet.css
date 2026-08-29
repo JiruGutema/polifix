@@ -1,0 +1,160 @@
+/* Polifix — a spotlight-style panel over a dimmed screen. */
+
+.polifix-overlay {
+  background-color: transparent;
+}
+
+.polifix-scrim {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.polifix-card {
+  min-width: 560px;
+  padding: 18px;
+  spacing: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background-color: rgba(28, 28, 32, 0.96);
+  color: #f2f2f4;
+  box-shadow: 0 12px 42px 6px rgba(0, 0, 0, 0.55);
+}
+
+/* Header ------------------------------------------------------------- */
+
+.polifix-header {
+  spacing: 10px;
+}
+
+.polifix-title {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.4px;
+}
+
+.polifix-chip-model {
+  font-size: 11px;
+  color: rgba(242, 242, 244, 0.55);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.polifix-icon-button {
+  padding: 4px;
+  border-radius: 8px;
+  color: rgba(242, 242, 244, 0.65);
+}
+
+.polifix-icon-button:hover,
+.polifix-icon-button:focus {
+  background-color: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+}
+
+/* Input and output ---------------------------------------------------- */
+
+.polifix-input-scroll {
+  max-height: 150px;
+}
+
+.polifix-input {
+  min-height: 68px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #f2f2f4;
+  font-size: 14px;
+  caret-color: #f2f2f4;
+}
+
+.polifix-input:focus {
+  border-color: rgba(120, 170, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.polifix-input StLabel.hint-text {
+  color: rgba(242, 242, 244, 0.35);
+}
+
+.polifix-output-scroll {
+  min-height: 90px;
+  max-height: 320px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
+.polifix-output {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #eceff4;
+}
+
+/* Transformation chips ------------------------------------------------ */
+
+.polifix-chip-scroll {
+  max-height: 44px;
+}
+
+.polifix-chips {
+  spacing: 6px;
+  padding: 1px;
+}
+
+.polifix-chip {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: rgba(242, 242, 244, 0.80);
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid transparent;
+}
+
+.polifix-chip:hover,
+.polifix-chip:focus {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.polifix-chip-selected {
+  background-color: rgba(120, 170, 255, 0.22);
+  border-color: rgba(120, 170, 255, 0.70);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Footer -------------------------------------------------------------- */
+
+.polifix-footer {
+  spacing: 8px;
+}
+
+.polifix-status {
+  font-size: 11px;
+  color: rgba(242, 242, 244, 0.55);
+}
+
+.polifix-button {
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #f2f2f4;
+  background-color: rgba(255, 255, 255, 0.09);
+  border: 1px solid transparent;
+}
+
+.polifix-button:hover,
+.polifix-button:focus {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.polifix-button-primary {
+  background-color: rgba(120, 170, 255, 0.90);
+  color: #10131a;
+  font-weight: 600;
+}
+
+.polifix-button-primary:hover,
+.polifix-button-primary:focus {
+  background-color: rgb(150, 190, 255);
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="polifix">
+  <enum id="org.gnome.shell.extensions.polifix.provider">
+    <value nick="anthropic" value="0"/>
+    <value nick="gemini" value="1"/>
+    <value nick="openai" value="2"/>
+  </enum>
+
+  <schema id="org.gnome.shell.extensions.polifix"
+          path="/org/gnome/shell/extensions/polifix/">
+
+    <key name="provider" enum="org.gnome.shell.extensions.polifix.provider">
+      <default>'anthropic'</default>
+      <summary>Which provider to send text to</summary>
+    </key>
+
+    <key name="anthropic-model" type="s">
+      <default>'claude-opus-5'</default>
+      <summary>Anthropic model id</summary>
+    </key>
+
+    <key name="gemini-model" type="s">
+      <default>'gemini-3.6-flash'</default>
+      <summary>Gemini model id</summary>
+    </key>
+
+    <key name="openai-model" type="s">
+      <default>'gpt-4o-mini'</default>
+      <summary>Model id for the OpenAI-compatible endpoint</summary>
+    </key>
+
+    <key name="openai-base-url" type="s">
+      <default>'https://api.openai.com/v1'</default>
+      <summary>Base URL of the OpenAI-compatible endpoint</summary>
+      <description>Anything speaking /chat/completions: OpenAI, OpenRouter, Groq, Ollama, llama.cpp.</description>
+    </key>
+
+    <key name="max-output-tokens" type="i">
+      <range min="256" max="32000"/>
+      <default>4096</default>
+      <summary>Ceiling on the length of a result</summary>
+    </key>
+
+    <key name="transformations" type="s">
+      <default>'[]'</default>
+      <summary>User transformations, as a JSON array</summary>
+      <description>An empty array means the built-in defaults are used.</description>
+    </key>
+
+    <key name="show-indicator" type="b">
+      <default>true</default>
+      <summary>Show the panel indicator</summary>
+    </key>
+
+    <key name="toggle-panel" type="as">
+      <default><![CDATA[['<Super>t']]]></default>
+      <summary>Open Polifix with an empty input</summary>
+    </key>
+
+    <key name="transform-clipboard" type="as">
+      <default><![CDATA[['<Super><Shift>v']]]></default>
+      <summary>Open Polifix seeded from the clipboard</summary>
+    </key>
+  </schema>
+</schemalist>
